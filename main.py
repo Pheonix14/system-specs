@@ -4,7 +4,6 @@ import psutil
 import socket
 import subprocess
 import GPUtil
-import pyopencl as cl
 from colorama import Fore, Style, init
 
 def get_cpu_info():
@@ -34,26 +33,6 @@ def get_gpu_info():
     if gpus:
         gpu_info = gpus[0].name
     return gpu_info
-
-def get_vulkan_info():
-    try:
-        import vulkan as vk
-        instance = vk.Instance()
-        return vk.vkEnumerateInstanceVersion()
-    except ImportError:
-        return "Vulkan not installed"
-    except vk.VkError as e:
-        return str(e)
-
-def get_opencl_info():
-    try:
-        platforms = cl.get_platforms()
-        return [platform.version for platform in platforms]
-    except cl.LogicError:
-        return ["OpenCL not available"]
-
-def get_python_version():
-    return platform.python_version()
 
 def get_system_info():
     info = {}
@@ -90,12 +69,8 @@ def get_system_info():
     # Shell
     info['Shell'] = os.environ.get('SHELL', 'Unknown')
 
-    # API Versions
-    info['OpenCL'] = get_opencl_info()
-    info['Vulkan'] = get_vulkan_info()
-
     # Python Version
-    info['Python'] = get_python_version()
+    info['Python Version'] = platform.python_version()
 
     return info
 
@@ -106,7 +81,7 @@ def display_system_info(info):
     keys_order = [
         'Hostname', 'IP Address', 'OS', 'OS Version', 'CPU', 'CPU Arch', 'CPU Cores', 
         'CPU Speed', 'GPU', 'Total RAM', 'Used RAM', 'Disk Total', 'Disk Used', 
-        'Disk Free', 'Shell', 'OpenCL', 'Vulkan', 'Python'
+        'Disk Free', 'Shell', 'Python Version'
     ]
     for key in keys_order:
         if key in info:

@@ -8,7 +8,6 @@ authors = ["Your Name <you@example.com>"]
 python = ">=3.10.0,<3.12"
 psutil = "^6.0.0"
 colorama = "^0.4.6"
-pyopencl = "^2024.2.7"
 
 [tool.pyright]
 # https://github.com/microsoft/pyright/blob/main/docs/configuration.md

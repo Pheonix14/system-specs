@@ -1,6 +1,10 @@
-psutil==5.9.4
+cffi==1.16.0
 colorama==0.4.6
-gputil==1.4.0
-pyopencl==2023.1.1
-vulkan==1.2.198.1
-WMI==1.5.1  # Only required if you are running this on Windows
+GPUtil==1.4.0
+numpy==2.0.0
+platformdirs==4.2.2
+psutil==6.0.0
+pycparser==2.22
+pytools==2024.1.8
+siphash24==1.6
+typing_extensions==4.12.2
